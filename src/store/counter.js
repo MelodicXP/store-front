@@ -1,6 +1,7 @@
 // Set initial state(s)
 let initialState = { 
-  count: 0
+  count: 0,
+  numberOfClicks: 0
 };
 
 // Reducer function
@@ -10,9 +11,15 @@ const counterReducer = (state = initialState, action) => {
 
   switch (type) {
     case 'INCREMENT':
-      return { count: state.count + payload };
+      return { 
+        count: state.count + payload ,
+        numberOfClicks: state.numberOfClicks + 1
+      };
     case 'DECREMENT':
-      return { count: state.count - payload};
+      return { 
+        count: state.count - payload,
+        numberOfClicks: state.numberOfClicks +1
+      };
     default:
       return state;
   }
