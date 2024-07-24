@@ -1,7 +1,15 @@
 // Set initial state(s)
 let initialState = { 
   count: 0,
-  numberOfClicks: 0
+  numberOfClicks: 0,
+  categories: ["Electronics", "Food"],
+  products: [
+    {
+      name: "TV",
+      price: 100,
+      category: "Electronics"
+    }
+  ]
 };
 
 // Reducer function
