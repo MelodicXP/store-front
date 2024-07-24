@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from './store/counter.js';
+import Header from './Components/Header/index.jsx'
+import Footer from './Components/Footer/index.jsx';
 
 function App() {
 
@@ -22,10 +24,11 @@ function App() {
   
   return (
     <>
-      <h1>Redux Counter</h1>
+      <Header/>
       <h3>Current Count({numberOfClicks}): {count}</h3>
       <button onClick={handleDecrement}>Decrement</button>
       <button onClick={handleIncrement}>Increment</button>
+      <Footer/>
     </>
   )
 }
