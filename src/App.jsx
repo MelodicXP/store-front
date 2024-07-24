@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from './store/counter.js';
 import Header from './Components/Header/index.jsx'
 import Footer from './Components/Footer/index.jsx';
+import Categories from "./Components/Categories/index.jsx";
+import Products from "./Components/Products/index.jsx";
 
 function App() {
 
@@ -25,6 +27,8 @@ function App() {
   return (
     <>
       <Header/>
+      <Categories/>
+      <Products />
       <h3>Current Count({numberOfClicks}): {count}</h3>
       <button onClick={handleDecrement}>Decrement</button>
       <button onClick={handleIncrement}>Increment</button>
