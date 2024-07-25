@@ -8,6 +8,11 @@ let initialState = {
       name: "TV",
       price: 100,
       category: "Electronics"
+    },
+    {
+      name: "Apple",
+      price: 2,
+      category: "Food"
     }
   ]
 };
