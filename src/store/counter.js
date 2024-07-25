@@ -2,20 +2,34 @@
 let initialState = { 
   count: 0,
   numberOfClicks: 0,
-  categories: ["ELECTRONICS", "FOOD"],
+  categories: [
+    {
+      category:"ELECTRONICS",
+      description: "Electronics Category Description"
+    }, 
+    {
+      category: "FOOD",
+      description: "Food Category Description"
+    }
+  ],
   products: [
     {
       name: "TV",
+      description: "75 inch TV",
       price: 100,
-      category: "ELECTRONICS"
+      category: "ELECTRONICS",
+      inventory: 3
     },
     {
       name: "Apple",
+      description: "Sweet fruit",
       price: 2,
-      category: "FOOD"
+      category: "FOOD",
+      inventory: 2
     }
   ],
-  filteredProducts: [] // Store filtered products
+  filteredProducts: [], // Store filtered products
+  filteredCategory: {} // Store filtered category
 };
 
 // Reducer function
@@ -42,7 +56,12 @@ const counterReducer = (state = initialState, action) => {
         filteredProducts: state.products.filter((item) => {
           return item.category === payload;
         })
-      }
+      };
+      case 'SHOW_CATEGORY_DESCRIPTION':
+        return {
+          ...state,
+          filteredCategory: state.categories.find((category) => category.category === payload)
+        };
     default:
       return state;
   }
@@ -68,6 +87,13 @@ export const decrement = (payload) => {
 export const showChosenCategory = (category) => {
   return {
     type: 'SHOW_CATEGORY',
+    payload: category
+  }
+}
+
+export const showCategoryDescription = (category) => {
+  return {
+    type: 'SHOW_CATEGORY_DESCRIPTION',
     payload: category
   }
 }
