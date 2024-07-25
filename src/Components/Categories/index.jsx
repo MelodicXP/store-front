@@ -1,12 +1,17 @@
 'use strict';
+import { useDispatch } from "react-redux";
+import { showChosenCategory } from "../../store/counter";
 
 const Categories = () => {
+
+  const dispatch = useDispatch();
+
   const handleDisplayElectronics = () => {
-    console.log('Handle Display Electronics');
+    dispatch(showChosenCategory('ELECTRONICS'));
   }
   
   const handleDisplayFood = () => {
-    console.log('Handle Display Food');
+    dispatch(showChosenCategory('FOOD'));
   }
 
   return (
