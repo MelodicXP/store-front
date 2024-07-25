@@ -2,19 +2,20 @@
 let initialState = { 
   count: 0,
   numberOfClicks: 0,
-  categories: ["Electronics", "Food"],
+  categories: ["ELECTRONICS", "FOOD"],
   products: [
     {
       name: "TV",
       price: 100,
-      category: "Electronics"
+      category: "ELECTRONICS"
     },
     {
       name: "Apple",
       price: 2,
-      category: "Food"
+      category: "FOOD"
     }
-  ]
+  ],
+  filteredProducts: [] // Store filtered products
 };
 
 // Reducer function
@@ -25,14 +26,23 @@ const counterReducer = (state = initialState, action) => {
   switch (type) {
     case 'INCREMENT':
       return { 
+        ...state,
         count: state.count + payload ,
         numberOfClicks: state.numberOfClicks + 1
       };
     case 'DECREMENT':
       return { 
+        ...state,
         count: state.count - payload,
         numberOfClicks: state.numberOfClicks +1
       };
+    case 'SHOW_CATEGORY':
+      return {
+        ...state,
+        filteredProducts: state.products.filter((item) => {
+          return item.category === payload;
+        })
+      }
     default:
       return state;
   }
@@ -52,5 +62,12 @@ export const decrement = (payload) => {
   return {
     type: 'DECREMENT',
     payload: payload
+  }
+}
+
+export const showChosenCategory = (category) => {
+  return {
+    type: 'SHOW_CATEGORY',
+    payload: category
   }
 }
