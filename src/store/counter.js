@@ -1,7 +1,5 @@
 // Set initial state(s)
 let initialState = { 
-  count: 0,
-  numberOfClicks: 0,
   categories: [
     {
       category:"ELECTRONICS",
@@ -18,14 +16,32 @@ let initialState = {
       description: "75 inch TV",
       price: 100,
       category: "ELECTRONICS",
-      inventory: 3
+      inventory: 3,
+      image: "src/assets/tvImage.jpg"
+    },
+    {
+      name: "Laptop",
+      description: "Macbook",
+      price: 1000,
+      category: "ELECTRONICS",
+      inventory: 3,
+      image: "src/assets/laptopImage.jpg"
+    },
+    {
+      name: "Speaker",
+      description: "Bose",
+      price: 300,
+      category: "ELECTRONICS",
+      inventory: 3,
+      image: "src/assets/speakerImage.jpg"
     },
     {
       name: "Apple",
       description: "Sweet fruit",
       price: 2,
       category: "FOOD",
-      inventory: 2
+      inventory: 2,
+      image: "src/assets/appleImage.jpg"
     }
   ],
   filteredProducts: [], // Store filtered products
@@ -38,18 +54,6 @@ const counterReducer = (state = initialState, action) => {
   let { type, payload } = action;
 
   switch (type) {
-    case 'INCREMENT':
-      return { 
-        ...state,
-        count: state.count + payload ,
-        numberOfClicks: state.numberOfClicks + 1
-      };
-    case 'DECREMENT':
-      return { 
-        ...state,
-        count: state.count - payload,
-        numberOfClicks: state.numberOfClicks +1
-      };
     case 'SHOW_CATEGORY':
       return {
         ...state,
@@ -70,20 +74,6 @@ const counterReducer = (state = initialState, action) => {
 export default counterReducer;
 
 // ACTION CREATORS (when invoked call reducer function 'counter')
-export const increment = (payload) => {
-  return {
-    type: 'INCREMENT',
-    payload: payload
-  }
-}
-
-export const decrement = (payload) => {
-  return {
-    type: 'DECREMENT',
-    payload: payload
-  }
-}
-
 export const showChosenCategory = (category) => {
   return {
     type: 'SHOW_CATEGORY',
