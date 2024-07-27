@@ -92,6 +92,12 @@ Dev Dependencies
 * "eslint-plugin-react-refresh": "^0.4.7",
 * "vite": "^5.3.4"
 
+### Testing
+
+* Test category component
+* Test product component
+* Test action and reducer from store
+
 ### React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
