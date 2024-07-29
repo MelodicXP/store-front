@@ -8,7 +8,7 @@ import './Products.scss';
 
 const Products = () => {
   // Pulls state via useSelector from counter.js in the intiial state
-  const products = useSelector((state) => state.counter.filteredProducts);
+  const products = useSelector((state) => state.products.filteredProducts);
   
   return (
     <div>

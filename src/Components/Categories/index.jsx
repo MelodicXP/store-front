@@ -1,6 +1,6 @@
 'use strict';
 import { useDispatch, useSelector } from "react-redux";
-import { showChosenCategory, showCategoryDescription } from "../../store/actions";
+import { showCategory } from "../../store/actions";
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -9,16 +9,16 @@ import './Categories.scss';
 const Categories = () => {
   const dispatch = useDispatch();
 
-  const category = useSelector((state) => state.counter.filteredCategory);
+  const category = useSelector((state) => state.categories.filteredCategory);
 
   const handleDisplayElectronics = () => {
-    dispatch(showChosenCategory('ELECTRONICS'));
-    dispatch(showCategoryDescription('ELECTRONICS'));
+    dispatch(showCategory('ELECTRONICS'));
+    // dispatch(showCategoryDescription('ELECTRONICS'));
   }
   
   const handleDisplayFood = () => {
-    dispatch(showChosenCategory('FOOD'));
-    dispatch(showCategoryDescription('FOOD'));
+    dispatch(showCategory('FOOD'));
+    // dispatch(showCategoryDescription('FOOD'));
   }
 
   return (

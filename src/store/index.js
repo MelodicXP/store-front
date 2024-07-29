@@ -3,9 +3,10 @@
 /* This format used every time setting up a new file */
 import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import counter from './counter.js'; // Name as you please'counter' 'counterReducer', etc...
+import categories from './counter.js';
+import products from './products.js' // Name as you please'counter' 'counterReducer', etc...
 
-let reducers = combineReducers({ counter });
+let reducers = combineReducers({ categories, products });
 
 const store = createStore(reducers, composeWithDevTools());
 
