@@ -49,6 +49,22 @@ const productReducer = (state = initialState, action) => {
           return item.category === payload;
         })
       };
+    case 'ADD_TO_CART': {
+      const updatedProducts = state.products.map((product) => {
+        if (product.name === payload.name) {
+          return {
+            ...product,
+            inventory: product.inventory > 0 ? product.inventory - 1 : 0
+          };
+        }
+        return product;
+      });
+
+      return {
+        ...state,
+        products: updatedProducts
+      };
+    }
     default:
       return state;
   }
