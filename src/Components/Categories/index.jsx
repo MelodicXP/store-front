@@ -1,6 +1,6 @@
 'use strict';
 import { useDispatch, useSelector } from "react-redux";
-import { showChosenCategory, showCategoryDescription } from "../../store/counter";
+import { showChosenCategory, showCategoryDescription } from "../../store/actions";
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';

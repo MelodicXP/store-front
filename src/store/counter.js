@@ -72,18 +72,3 @@ const counterReducer = (state = initialState, action) => {
 }
 
 export default counterReducer;
-
-// ACTION CREATORS (when invoked call reducer function 'counter')
-export const showChosenCategory = (category) => {
-  return {
-    type: 'SHOW_CATEGORY',
-    payload: category
-  }
-}
-
-export const showCategoryDescription = (category) => {
-  return {
-    type: 'SHOW_CATEGORY_DESCRIPTION',
-    payload: category
-  }
-}
