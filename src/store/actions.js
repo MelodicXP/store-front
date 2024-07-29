@@ -7,9 +7,9 @@ export const showCategory = (category) => {
   }
 }
 
-// export const showCategoryDescription = (category) => {
-//   return {
-//     type: 'SHOW_CATEGORY_DESCRIPTION',
-//     payload: category
-//   }
-// }
+export const addToCart = (item) => {
+  return {
+    type: 'ADD_TO_CART',
+    payload: item
+  }
+}

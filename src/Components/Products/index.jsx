@@ -1,14 +1,21 @@
 'use strict';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 import './Products.scss';
+import { addToCart } from '../../store/actions';
 
 
 const Products = () => {
+  const dispatch = useDispatch();
+
   // Pulls state via useSelector from counter.js in the intiial state
   const products = useSelector((state) => state.products.filteredProducts);
+
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+  }
   
   return (
     <div>
@@ -31,6 +38,7 @@ const Products = () => {
                 {product.description}
               </Typography>
             </CardContent>
+            <Button onClick={() => handleAddToCart(product)}>Add To Cart</Button>
           </Card>
         ))}
       </Box>
