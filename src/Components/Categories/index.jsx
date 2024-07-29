@@ -9,16 +9,14 @@ import './Categories.scss';
 const Categories = () => {
   const dispatch = useDispatch();
 
-  const category = useSelector((state) => state.categories.filteredCategory);
+  const category = useSelector((state) => state.categories.activeCategory);
 
   const handleDisplayElectronics = () => {
     dispatch(showCategory('ELECTRONICS'));
-    // dispatch(showCategoryDescription('ELECTRONICS'));
   }
   
   const handleDisplayFood = () => {
     dispatch(showCategory('FOOD'));
-    // dispatch(showCategoryDescription('FOOD'));
   }
 
   return (
