@@ -1,31 +1,42 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, beforeEach, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
-
-import Products from './index.jsx';
+import Products from './index';
 
 // Set up the mock store
 const mockStore = configureStore([]);
 const initialState = {
-  counter: {
+  products: {
     filteredProducts: [
       {
-        name: 'Product 1',
-        description: 'Description 1',
-        image: 'image1.jpg',
+        name: "TV",
+        description: "75 inch TV",
+        price: 100,
+        category: "ELECTRONICS",
+        inventory: 3,
+        image: "src/assets/tvImage.jpg"
       },
       {
-        name: 'Product 2',
-        description: 'Description 2',
-        image: 'image2.jpg',
-      },
-    ],
-  },
+        name: "Laptop",
+        description: "Macbook",
+        price: 1000,
+        category: "ELECTRONICS",
+        inventory: 3,
+        image: "src/assets/laptopImage.jpg"
+      }
+    ]
+  }
 };
-const store = mockStore(initialState);
 
 describe('Products', () => {
+  let store;
+
+  beforeEach(() => {
+    store = mockStore(initialState);
+    store.clearActions();
+  });
+
   it('should render product list', () => {
     render(
       <Provider store={store}>
@@ -33,13 +44,13 @@ describe('Products', () => {
       </Provider>
     );
 
-    expect(screen.getByText('Product 1')).toBeInTheDocument();
-    expect(screen.getByText('Description 1')).toBeInTheDocument();
-    expect(screen.getByAltText('Product 1')).toBeInTheDocument();
+    expect(screen.getByText('TV')).toBeInTheDocument();
+    expect(screen.getByText('75 inch TV')).toBeInTheDocument();
+    expect(screen.getByAltText('TV')).toBeInTheDocument();
 
-    expect(screen.getByText('Product 2')).toBeInTheDocument();
-    expect(screen.getByText('Description 2')).toBeInTheDocument();
-    expect(screen.getByAltText('Product 2')).toBeInTheDocument();
+    expect(screen.getByText('Laptop')).toBeInTheDocument();
+    expect(screen.getByText('Macbook')).toBeInTheDocument();
+    expect(screen.getByAltText('Laptop')).toBeInTheDocument();
   });
 
   it('should render the correct number of products', () => {
@@ -49,7 +60,7 @@ describe('Products', () => {
       </Provider>
     );
 
-    const productCards = screen.getAllByRole('img');
-    expect(productCards.length).toBe(2);
+    const productImages = screen.getAllByRole('img');
+    expect(productImages.length).toBe(2);
   });
 });
