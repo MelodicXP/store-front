@@ -21,49 +21,49 @@ const Categories = () => {
 
   return (
     <>
-    <Typography variant="h5">Browse our Categories</Typography>
-    <Box 
-      className="categories"
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        // border: '1px solid',
-        borderColor: 'divider',
-        borderRadius: 1,
-        bgcolor: 'background.paper',
-        color: 'text.secondary',
-        '& svg': {
-          m: 1,
-        },
-        '& hr': {
-          mx: 0.5,
-        },
-      }}
-    >
-      <Typography
-        onClick={handleDisplayElectronics}
+      <Typography variant="h5">Browse our Categories</Typography>
+      <Box 
+        className="categories"
         sx={{
-          cursor: 'pointer',
-          color: 'blue',
-          marginRight: '10px',
+          display: 'flex',
+          alignItems: 'center',
+          // border: '1px solid',
+          borderColor: 'divider',
+          borderRadius: 1,
+          bgcolor: 'background.paper',
+          color: 'text.secondary',
+          '& svg': {
+            m: 1,
+          },
+          '& hr': {
+            mx: 0.5,
+          },
         }}
       >
-      ELECTRONICS
-      </Typography>
+        <Typography
+          onClick={handleDisplayElectronics}
+          sx={{
+            cursor: 'pointer',
+            color: 'blue',
+            marginRight: '10px',
+          }}
+        >
+        ELECTRONICS
+        </Typography>
 
-      <Divider orientation="vertical" flexItem />
-      
-      <Typography
-        onClick={handleDisplayFood}
-        sx={{
-          cursor: 'pointer',
-          color: 'blue',
-          marginRight: '10px',
-        }}
-      >
-      FOOD
-      </Typography>
-    </Box>
+        <Divider orientation="vertical" flexItem />
+        
+        <Typography
+          onClick={handleDisplayFood}
+          sx={{
+            cursor: 'pointer',
+            color: 'blue',
+            marginRight: '10px',
+          }}
+        >
+        FOOD
+        </Typography>
+      </Box>
 
       {category && (
         <>
