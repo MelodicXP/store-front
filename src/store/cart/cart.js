@@ -1,18 +1,22 @@
 'use strict';
 
 let initialState = {
-  numberOfItemsInCart: 4
+  numberOfItemsInCart: 0,
+  itemsInCart: [] // Start with an empty array
 };
 
 const cartReducer = (state = initialState, action) => {
   let { type, payload } = action;
 
   switch (type) {
-    case 'SHOW_NUMBER_OF_ITEMS_IN_CART':
+    case 'ADD_TO_CART': {
+      const updatedItems = [...state.itemsInCart, payload];
       return {
         ...state,
-        numberOfItemsInCart: state.numberOfItemsInCart
+        itemsInCart: updatedItems,
+        numberOfItemsInCart: updatedItems.length
       };
+    }
     default:
       return state;
   }
