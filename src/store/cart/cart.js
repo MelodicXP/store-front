@@ -17,6 +17,14 @@ const cartReducer = (state = initialState, action) => {
         numberOfItemsInCart: updatedItems.length
       };
     }
+    case 'DELETE_FROM_CART': {
+      const updatedItems = state.itemsInCart.filter((item, index) => index !== payload);
+      return {
+        ...state,
+        itemsInCart: updatedItems,
+        numberOfItemsInCart: updatedItems.length
+      };
+    }
     default:
       return state;
   }
