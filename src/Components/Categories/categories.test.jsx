@@ -1,21 +1,36 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, beforeEach, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 
-import Categories from './index.jsx';
+import Categories from './index';
 
-// Mock store
+// Set up the mock store
 const mockStore = configureStore([]);
 const initialState = {
-  counter: {
-    filteredCategory: null,
-  },
+  categories: {
+    activeCategory: null,
+    categories: [
+      {
+        category: "ELECTRONICS",
+        description: "Electronics Category Description"
+      }, 
+      {
+        category: "FOOD",
+        description: "Food Category Description"
+      }
+    ]
+  }
 };
 
-const store = mockStore(initialState);
-
 describe('Categories', () => {
+  let store;
+
+  beforeEach(() => {
+    store = mockStore(initialState);
+    store.clearActions();
+  });
+
   it('should render categories', () => {
     render(
       <Provider store={store}>
@@ -28,7 +43,7 @@ describe('Categories', () => {
     expect(screen.getByText('FOOD')).toBeInTheDocument();
   });
 
-  it('should dispatch actions when category is clicked', () => {
+  it('should dispatch action when ELECTRONICS category is clicked', () => {
     render(
       <Provider store={store}>
         <Categories />
@@ -36,17 +51,27 @@ describe('Categories', () => {
     );
 
     const electronicsElement = screen.getByText('ELECTRONICS');
-    const foodElement = screen.getByText('FOOD');
-
     fireEvent.click(electronicsElement);
+
+    const actions = store.getActions();
+    expect(actions).toEqual([
+      { type: 'SHOW_CATEGORY', payload: 'ELECTRONICS' }
+    ]);
+  });
+
+  it('should dispatch action when FOOD category is clicked', () => {
+    render(
+      <Provider store={store}>
+        <Categories />
+      </Provider>
+    );
+
+    const foodElement = screen.getByText('FOOD');
     fireEvent.click(foodElement);
 
     const actions = store.getActions();
     expect(actions).toEqual([
-      { type: 'SHOW_CATEGORY', payload: 'ELECTRONICS' },
-      { type: 'SHOW_CATEGORY_DESCRIPTION', payload: 'ELECTRONICS' },
-      { type: 'SHOW_CATEGORY', payload: 'FOOD' },
-      { type: 'SHOW_CATEGORY_DESCRIPTION', payload: 'FOOD' },
+      { type: 'SHOW_CATEGORY', payload: 'FOOD' }
     ]);
   });
 });

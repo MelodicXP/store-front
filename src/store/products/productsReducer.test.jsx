@@ -1,17 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import counterReducer from './counter';
+import productReducer from './products'; 
+import { showCategory } from '../actions'; 
 
 const initialState = {
-  categories: [
-    {
-      category: "ELECTRONICS",
-      description: "Electronics Category Description"
-    }, 
-    {
-      category: "FOOD",
-      description: "Food Category Description"
-    }
-  ],
   products: [
     {
       name: "TV",
@@ -47,12 +38,11 @@ const initialState = {
     }
   ],
   filteredProducts: [], // Store filtered products
-  filteredCategory: {} // Store filtered category
 };
 
-describe('counterReducer', () => {
-  it('should return the initial state', () => {
-    expect(counterReducer(undefined, {})).toEqual(initialState);
+describe('productReducer', () => {
+  it('should show product list', () => {
+    expect(productReducer(undefined, {})).toEqual(initialState);
   });
 
   it('should handle SHOW_CATEGORY', () => {
@@ -66,20 +56,17 @@ describe('counterReducer', () => {
       filteredProducts: initialState.products.filter(product => product.category === 'ELECTRONICS')
     };
 
-    expect(counterReducer(initialState, action)).toEqual(expectedState);
+    expect(productReducer(initialState, action)).toEqual(expectedState);
   });
+});
 
-  it('should handle SHOW_CATEGORY_DESCRIPTION', () => {
-    const action = {
-      type: 'SHOW_CATEGORY_DESCRIPTION',
-      payload: 'FOOD'
+describe('Action Creators', () => {
+  it('should create an action to show chosen category', () => {
+    const category = 'ELECTRONICS';
+    const expectedAction = {
+      type: 'SHOW_CATEGORY',
+      payload: category,
     };
-
-    const expectedState = {
-      ...initialState,
-      filteredCategory: initialState.categories.find(category => category.category === 'FOOD')
-    };
-
-    expect(counterReducer(initialState, action)).toEqual(expectedState);
+    expect(showCategory(category)).toEqual(expectedAction);
   });
 });

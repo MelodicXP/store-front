@@ -1,15 +1,6 @@
-// Set initial state(s)
-let initialState = { 
-  categories: [
-    {
-      category:"ELECTRONICS",
-      description: "Electronics Category Description"
-    }, 
-    {
-      category: "FOOD",
-      description: "Food Category Description"
-    }
-  ],
+'use strict';
+
+let initialState = {
   products: [
     {
       name: "TV",
@@ -44,12 +35,11 @@ let initialState = {
       image: "src/assets/appleImage.jpg"
     }
   ],
-  filteredProducts: [], // Store filtered products
-  filteredCategory: {} // Store filtered category
+  filteredProducts: [],
 };
 
 // Reducer function
-const counterReducer = (state = initialState, action) => {
+const productReducer = (state = initialState, action) => {
   // Deconstruct to pull type and payload from action object
   let { type, payload } = action;
 
@@ -61,29 +51,41 @@ const counterReducer = (state = initialState, action) => {
           return item.category === payload;
         })
       };
-      case 'SHOW_CATEGORY_DESCRIPTION':
-        return {
-          ...state,
-          filteredCategory: state.categories.find((category) => category.category === payload)
-        };
+    case 'ADD_TO_CART': {
+      const updatedProducts = state.products.map((product) => {
+        if (product.name === payload.name) {
+          return {
+            ...product,
+            inventory: product.inventory > 0 ? product.inventory - 1 : 0
+          };
+        }
+        return product;
+      });
+
+      return {
+        ...state,
+        products: updatedProducts
+      };
+    }
+    case 'DELETE_FROM_CART': {
+      const updatedProducts = state.products.map((product) => {
+        if (product.name === payload.item.name) {
+          return {
+            ...product,
+            inventory: product.inventory + 1
+          };
+        }
+        return product;
+      });
+
+      return {
+        ...state,
+        products: updatedProducts
+      };
+    }
     default:
       return state;
   }
 }
 
-export default counterReducer;
-
-// ACTION CREATORS (when invoked call reducer function 'counter')
-export const showChosenCategory = (category) => {
-  return {
-    type: 'SHOW_CATEGORY',
-    payload: category
-  }
-}
-
-export const showCategoryDescription = (category) => {
-  return {
-    type: 'SHOW_CATEGORY_DESCRIPTION',
-    payload: category
-  }
-}
+export default productReducer;
