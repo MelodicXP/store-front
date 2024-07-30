@@ -109,6 +109,7 @@ Application Flow:
 ## Documentation
 
 ![UML](./src/assets/lab36UML.png)
+![UML](./src/assets/lab37Redux.png)
 
 ### How to initialize/run application (where applicable)
 
