@@ -18,7 +18,7 @@ const cartReducer = (state = initialState, action) => {
       };
     }
     case 'DELETE_FROM_CART': {
-      const updatedItems = state.itemsInCart.filter((item, index) => index !== payload);
+      const updatedItems = state.itemsInCart.filter((item, index) => index !== payload.index);
       return {
         ...state,
         itemsInCart: updatedItems,

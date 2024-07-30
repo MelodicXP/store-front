@@ -14,9 +14,9 @@ export const addToCart = (item) => {
   }
 }
 
-export const deleteFromCart = (index) => {
+export const deleteFromCart = (item, index) => {
   return {
     type: 'DELETE_FROM_CART',
-    payload: index
+    payload: { item, index }
   }
 }

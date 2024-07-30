@@ -1,3 +1,5 @@
+'use strict';
+
 let initialState = {
   products: [
     {
@@ -55,6 +57,22 @@ const productReducer = (state = initialState, action) => {
           return {
             ...product,
             inventory: product.inventory > 0 ? product.inventory - 1 : 0
+          };
+        }
+        return product;
+      });
+
+      return {
+        ...state,
+        products: updatedProducts
+      };
+    }
+    case 'DELETE_FROM_CART': {
+      const updatedProducts = state.products.map((product) => {
+        if (product.name === payload.item.name) {
+          return {
+            ...product,
+            inventory: product.inventory + 1
           };
         }
         return product;

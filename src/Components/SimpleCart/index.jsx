@@ -2,7 +2,7 @@
 import './SimpleCart.scss';
 
 import { Paper, List, ListItem, ListItemText, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete'
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteFromCart } from '../../store/actions';
 
@@ -11,8 +11,8 @@ const SimpleCart = () => {
 
   const itemsInCart = useSelector((state) => state.cart.itemsInCart);
 
-  const handleDeleteFromCart = (item) => {
-    dispatch(deleteFromCart(item));
+  const handleDeleteFromCart = (item, index) => {
+    dispatch(deleteFromCart(item, index));
   }
 
   return (
@@ -24,7 +24,7 @@ const SimpleCart = () => {
               key={index}
               className='shopping-cart-item'
               secondaryAction={
-                <IconButton onClick={() => handleDeleteFromCart(index)} edge="end" aria-label="delete">
+                <IconButton onClick={() => handleDeleteFromCart(item, index)} edge="end" aria-label="delete">
                   <DeleteIcon />
                 </IconButton>
               }
@@ -37,4 +37,5 @@ const SimpleCart = () => {
     </div>
   );
 };
+
 export default SimpleCart;
