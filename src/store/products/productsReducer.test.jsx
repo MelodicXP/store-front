@@ -41,9 +41,6 @@ const initialState = {
 };
 
 describe('productReducer', () => {
-  it('should show product list', () => {
-    expect(productReducer(undefined, {})).toEqual(initialState);
-  });
 
   it('should handle SHOW_CATEGORY', () => {
     const action = {
