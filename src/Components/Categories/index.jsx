@@ -12,11 +12,11 @@ const Categories = () => {
   const category = useSelector((state) => state.categories.activeCategory);
 
   const handleDisplayElectronics = () => {
-    dispatch(showCategory('ELECTRONICS'));
+    dispatch(showCategory('Electronics'));
   }
   
   const handleDisplayFood = () => {
-    dispatch(showCategory('FOOD'));
+    dispatch(showCategory('Food'));
   }
 
   return (

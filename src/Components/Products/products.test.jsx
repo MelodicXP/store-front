@@ -1,11 +1,13 @@
 import { describe, it, beforeEach, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import configureStore from 'redux-mock-store';
+import { thunk } from 'redux-thunk';
 import { Provider } from 'react-redux';
 import Products from './index';
 
-// Set up the mock store
-const mockStore = configureStore([]);
+// Set up the mock store with thunk middleware
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
 const initialState = {
   products: {
     filteredProducts: [

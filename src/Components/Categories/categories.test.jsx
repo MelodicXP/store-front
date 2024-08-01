@@ -55,7 +55,7 @@ describe('Categories', () => {
 
     const actions = store.getActions();
     expect(actions).toEqual([
-      { type: 'SHOW_CATEGORY', payload: 'ELECTRONICS' }
+      { type: 'SHOW_CATEGORY', payload: 'Electronics' }
     ]);
   });
 
@@ -71,7 +71,7 @@ describe('Categories', () => {
 
     const actions = store.getActions();
     expect(actions).toEqual([
-      { type: 'SHOW_CATEGORY', payload: 'FOOD' }
+      { type: 'SHOW_CATEGORY', payload: 'Food' }
     ]);
   });
 });
