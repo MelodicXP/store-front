@@ -5,13 +5,21 @@ import CardContent from '@mui/material/CardContent';
 import { Typography, Box, Button } from "@mui/material";
 import './Products.scss';
 import { addToCart } from '../../store/actions';
+import { useEffect } from "react";
+import { getProducts } from '../../store/actions';
 
 
 const Products = () => {
   const dispatch = useDispatch();
-
+  
   // Pulls state via useSelector from counter.js in the intiial state
   const products = useSelector((state) => state.products.filteredProducts);
+
+  // GET products from API on page load
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+  
 
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
