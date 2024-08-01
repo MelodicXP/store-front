@@ -1,4 +1,4 @@
-# 401 - Lab 37 - REDUX - Combined Reducers
+# 401 - Lab 38 - REDUX - Combined Reducers
 
 ## Project: Store Front
 
@@ -9,6 +9,8 @@
 **Virtual Store Phase 1:** Start process of creating an e-Commerce storefront using React with Redux, coupled with live API server.
 
 **Virtual Store Phase 2:** Continue work on the e-Commerce storefront, breaking up the store into multiple reducers and sharing functionality/data between components.
+
+**Virtual Store Phase 3:** Connect the Virtual Store to an API to retrieve live data from your data source, using thunk to enable asynchronous actions.
 
 ### Feature Tasks & Requirements
 
@@ -42,6 +44,15 @@ Application Flow:
 * Clicks the delete button on an item and sees the item removed (see stretch goals for this lab).
 * Changes the cart total in the header. If two different products are in the cart you should see: CART (2)
 
+**Virtual Store Phase 3:**  
+Phase 3, we will be connecting our Virtual Store to a live API so that data is persistent and able to be separately managed.
+
+The user stories from Phases 1 and 2 remain unchanged. For this phase, now adding the following new user stories to meet the new requirements.
+
+* As a user, I want to interact with live inventory so that I have confidence that the displayed products are in stock.
+
+* As a user, I want to know to that when I add an item to my cart, that it is removed from inventory so that no other users can purchase it.
+
 ### Technical Requirements/Notes
 
 **Phase 1:**
@@ -58,6 +69,20 @@ Application Flow:
 * Continue to use Material UI Components for layout and styling.
 * Add a “Cart” indicator to the header, like this: Cart (0).
 * Create a new Cart component to show the items in the user’s cart.
+
+**Phase 3:**  
+
+* Continue to use Material UI Components for layout and styling.
+* Load the category and product list from a remote API on page load.
+* Update the product quantity in stock when adding items to (or removing from) the cart.
+* Continue to use multiple reducers.
+
+**Notes on State Management:**
+
+* Need to use useEffect() to dispatch a load action on the initial page load.
+  * This will need to use thunk as it will be asynchronous.
+* When adding/removing/updating products in the cart, the action/reducer will need to update the product on the server.
+  * Perform the appropriate post, put, or delete via API call (using thunk in an async action) on each of these actions as performed by the users.
 
 ### Application Architecture
 
