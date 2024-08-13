@@ -1,6 +1,6 @@
 'use strict';
-import { useDispatch, useSelector } from "react-redux";
-import { showCategory } from "../../store/actions";
+import { useDispatch, useSelector } from 'react-redux';
+import { SHOW_CATEGORY } from '../../store/categories/categories'; // Import the action from the slice
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -9,25 +9,24 @@ import './Categories.scss';
 const Categories = () => {
   const dispatch = useDispatch();
 
-  const category = useSelector((state) => state.categories.activeCategory);
+  const category = useSelector((state) => state.categoriesSlice.activeCategory);
 
   const handleDisplayElectronics = () => {
-    dispatch(showCategory('Electronics'));
-  }
+    dispatch(SHOW_CATEGORY('ELECTRONICS')); // Dispatch the action with correct case
+  };
   
   const handleDisplayFood = () => {
-    dispatch(showCategory('Food'));
-  }
+    dispatch(SHOW_CATEGORY('FOOD')); // Dispatch the action with correct case
+  };
 
   return (
     <>
       <Typography variant="h5">Browse our Categories</Typography>
-      <Box 
+      <Box
         className="categories"
         sx={{
           display: 'flex',
           alignItems: 'center',
-          // border: '1px solid',
           borderColor: 'divider',
           borderRadius: 1,
           bgcolor: 'background.paper',
@@ -48,11 +47,11 @@ const Categories = () => {
             marginRight: '10px',
           }}
         >
-        ELECTRONICS
+          ELECTRONICS
         </Typography>
 
         <Divider orientation="vertical" flexItem />
-        
+
         <Typography
           onClick={handleDisplayFood}
           sx={{
@@ -61,7 +60,7 @@ const Categories = () => {
             marginRight: '10px',
           }}
         >
-        FOOD
+          FOOD
         </Typography>
       </Box>
 
@@ -73,6 +72,6 @@ const Categories = () => {
       )}
     </>
   );
-}
+};
 
 export default Categories;

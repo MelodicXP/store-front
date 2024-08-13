@@ -1,32 +1,28 @@
-// Set initial state(s)
-let initialState = { 
-  categories: [
-    {
-      category:"ELECTRONICS",
-      description: "Electronics Category Description"
-    }, 
-    {
-      category: "FOOD",
-      description: "Food Category Description"
-    }
-  ],
-  activeCategory: {} // Store filtered category
-};
+import { createSlice } from '@reduxjs/toolkit';
 
-// Reducer function
-const counterReducer = (state = initialState, action) => {
-  // Deconstruct to pull type and payload from action object
-  let { type, payload } = action;
+const categoriesSlice = createSlice({
+  name: 'categories',
+  initialState: {
+    categories: [
+      {
+        category: 'ELECTRONICS',
+        description: 'Electronics Category Description',
+      },
+      {
+        category: 'FOOD',
+        description: 'Food Category Description',
+      },
+    ],
+    activeCategory: {}, // Store filtered category
+  },
+  reducers: {
+    SHOW_CATEGORY: (state, action) => {
+      state.activeCategory = state.categories.find(
+        (category) => category.category === action.payload
+      );
+    },
+  },
+});
 
-  switch (type) {
-      case 'SHOW_CATEGORY':
-        return {
-          ...state,
-          activeCategory: state.categories.find((category) => category.category === payload)
-        };
-    default:
-      return state;
-  }
-}
-
-export default counterReducer;
+export const { SHOW_CATEGORY } = categoriesSlice.actions;
+export default categoriesSlice.reducer;
