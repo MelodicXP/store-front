@@ -4,15 +4,17 @@ import './SimpleCart.scss';
 import { Paper, List, ListItem, ListItemText, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromCart } from '../../store/actions';
+import { DELETE_FROM_CART } from '../../store/products/productsSlice';
+import { DECREMENT_NUM_CART_ITEMS } from '../../store/cart/cartSlice';
 
 const SimpleCart = () => {
   const dispatch = useDispatch();
 
-  const itemsInCart = useSelector((state) => state.cart.itemsInCart);
+  const itemsInCart = useSelector((state) => state.cartSlice.itemsInCart);
 
   const handleDeleteFromCart = (item, index) => {
-    dispatch(deleteFromCart(item, index));
+    dispatch(DELETE_FROM_CART({ item }));
+    dispatch(DECREMENT_NUM_CART_ITEMS({ index }));
   }
 
   return (
