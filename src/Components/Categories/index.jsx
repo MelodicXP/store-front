@@ -1,10 +1,11 @@
 'use strict';
 import { useDispatch, useSelector } from 'react-redux';
-import { SHOW_CATEGORY } from '../../store/categories/categories'; // Import the action from the slice
+import './Categories.scss';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import './Categories.scss';
+import { SHOW_CATEGORY } from '../../store/categories/categoriesSlice'; // Import the action from categoriesSlice
+import { SHOW_PRODUCTS_BY_CATEGORY } from '../../store/products/productsSlice'; // Import action from productsSlice
 
 const Categories = () => {
   const dispatch = useDispatch();
@@ -13,10 +14,12 @@ const Categories = () => {
 
   const handleDisplayElectronics = () => {
     dispatch(SHOW_CATEGORY('ELECTRONICS')); // Dispatch the action with correct case
+    dispatch(SHOW_PRODUCTS_BY_CATEGORY('ELECTRONICS'));
   };
   
   const handleDisplayFood = () => {
     dispatch(SHOW_CATEGORY('FOOD')); // Dispatch the action with correct case
+    dispatch(SHOW_PRODUCTS_BY_CATEGORY('FOOD'));
   };
 
   return (
