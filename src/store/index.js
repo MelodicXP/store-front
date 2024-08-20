@@ -1,16 +1,16 @@
 'use strict';
 
 import { configureStore } from '@reduxjs/toolkit';
-import categoriesSlice from './categories/categories.js';
-import products from './products/products.js';
-import cart from './cart/cart.js';
+import categoriesSlice from './categories/categoriesSlice.js';
+import productsSlice from './products/productsSlice.js';
+import cartSlice from './cart/cartSlice.js';
 
 // Configure store using Redux Toolkit
 const store = configureStore({
   reducer: {
     categoriesSlice,
-    products,
-    cart
+    productsSlice,
+    cartSlice
   },
   // Middleware is automatically added including thunk.
   // devTools: process.env.NODE_ENV !== 'production', 
