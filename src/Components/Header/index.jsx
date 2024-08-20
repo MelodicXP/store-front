@@ -5,7 +5,7 @@ import { Box, Typography } from '@mui/material';
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const numberOfItemsInCart = useSelector((state) => state.cart.numberOfItemsInCart);
+  const numberOfItemsInCart = useSelector((state) => state.cartSlice.numberOfItemsInCart);
   return (
     <>
       <header className="header">
